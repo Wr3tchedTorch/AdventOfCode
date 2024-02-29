@@ -13,7 +13,7 @@
 
 ### Porque decidi usar Java para realizar os exercicios?
 
-Esse ano escolhi resolver os desafios utilizando <a href="https://www.java.com/pt-BR/download/help/whatis_java.html">Java</a>, pois além de possuir bastante familiaridade com essa linguagem, também a considero como sendo bastante didática e que possui uma alta curva de aprendizagem, vi esses desafios como uma oportunidade para expandir meus conhecimentos e meu dominio sobre a linguagem e desenvolver minha lógica de programação.
+Esse ano escolhi resolver os desafios utilizando <a href="https://www.java.com/pt-BR/download/help/whatis_java.html">Java</a>, pois além de possuir bastante familiaridade com essa linguagem, também a considero como sendo bastante didática e que possui uma alta curva de aprendizagem. Vi esses desafios como uma oportunidade para expandir meus conhecimentos e meu dominio sobre a linguagem e desenvolver minha lógica de programação.
 
 ### Como contribuir?
 
