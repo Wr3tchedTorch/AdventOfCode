@@ -2,7 +2,7 @@
 ## Tabela de conteúdos
 
 - [O que é Advent Of Code?](#o-que-é-advent-of-code)
-- [Porque decidi usar java para realizar os exercicios?](#porque-decidi-usar-java-para-realizar-os-exercicios)
+- [Porque decidi usar Java para realizar os exercicios?](#porque-decidi-usar-java-para-realizar-os-exercicios)
 - [Como contribuir?](#como-contribuir)
 - [Redes sociais](#redes-sociais)
 - [Licença](#licença)
@@ -11,7 +11,7 @@
 
 Advent Of Code é um evento anual que disponibiliza diversos desafios de programação com temática de natal. Todo ano são lançados 25 novos desafios, cada um com sua própria história e problema a ser resolvido. Para evitar que os jogadores trapaceiem cada exercicio possui uma respostas gerada aleatóriamente para cada jogador, além disso cada problema possui uma grande quantidade de informações impossiveis de serem calculadas por um ser humano, fazendo com que o jogador seja obrigado a desenvolver um algoritmo que automatize a resolução do problema em uma linguagem de sua preferência.
 
-### Porque decidi usar java para realizar os exercicios?
+### Porque decidi usar Java para realizar os exercicios?
 
 Esse ano escolhi resolver os desafios utilizando Java, pois além de possuir bastante familiaridade com essa linguagem, também a considero como sendo bastante didática e que possui uma alta curva de aprendizagem, vi esses desafios como uma oportunidade para expandir meus conhecimentos e meu dominio sobre a linguagem e desenvolver minha lógica de programação.
 
