@@ -9,9 +9,8 @@ Exemplo:
     treb7uchet
 
 Total = 12 + 38 + 115 + 77 = 142
+
 */
-
-
 
 import java.io.File;
 import java.io.IOException;
@@ -22,31 +21,37 @@ public class App {
         File inputFile = new File("input.txt");
 
         try {
-            Scanner readFile = new Scanner(inputFile);
+            Scanner readTextFile = new Scanner(inputFile);
 
             int total = 0;
 
-            while (readFile.hasNextLine()) {                
-                String line = readFile.nextLine();                
+            while (readTextFile.hasNextLine()) {
+                String currentLine = readTextFile.nextLine();                
 
-                char first_num = '-';
-                char second_num = '-';
+                char firstNum = '-';
+                char secondNum = '-';
 
-                for (int i = 0; i < line.length(); i++) {
-                    char letter = line.toCharArray()[i];
+                for (int i = 0; i < currentLine.length(); i++) {
+                    char letterBeingChecked = currentLine.toCharArray()[i];
 
-                    if (Character.isDigit(letter)) {
-                        if (first_num == '-') {
-                            first_num = letter;
-                        } else second_num = letter;
+                    if (Character.isDigit(letterBeingChecked)) {
+                        boolean firstNumAlreadyFound = firstNum != '-';
+
+                        if (firstNumAlreadyFound) {
+                            secondNum = letterBeingChecked; 
+
+                        } else firstNum = letterBeingChecked;
                     }
 
                 }
 
-                if (second_num == '-') { second_num = first_num; }
+                if (secondNum == '-') { secondNum = firstNum; }
 
-                total += Integer.parseInt(Character.toString(first_num) + Character.toString(second_num));
+                total += Integer.parseInt(Character.toString(firstNum) + Character.toString(secondNum));
             }
+
+            readTextFile.close();
+
             System.out.println("Total: " + total);
 
         } catch (IOException e) {

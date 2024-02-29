@@ -16,23 +16,27 @@ public class App {
                 currentCard = currentCard.split(":")[1];
 
                 String[] yourCardNumbers = currentCard.split("\\|")[1].trim().replaceAll(" +", " ").split(" ");
-                String winningCardNumbers = currentCard.split("\\|")[0];
-
-                int yourCardScore = 1;
-                boolean isReadingFirstCard = true;
-
+                String winningCardNumbers = currentCard.split("\\|")[0].replaceAll(" +", " ");
+                
+                int yourCardScore = 0;
+                boolean isReadingFirstWinningCard = true;
+                
                 for (String numberBeingChecked : yourCardNumbers) {
                     boolean isWinningNumber = winningCardNumbers.contains(" " + numberBeingChecked + " ");
-
-                    if (isWinningNumber && !isReadingFirstCard) {
-                            isReadingFirstCard = false; yourCardScore *= 2; 
+                    
+                    if (isWinningNumber) {                                                
+                        if (isReadingFirstWinningCard) { 
+                            isReadingFirstWinningCard = false;
+                            yourCardScore++;
+                        } else yourCardScore *= 2;
                     }
-                }                
+
+                }
 
                 totalScore += yourCardScore;
             }
 
-            System.out.println("All your cards combined are worth " + totalScore);
+            System.out.println("Todas as suas cartas combinadas são igual a: " + totalScore);
             
             readFile.close();
         } catch (FileNotFoundException e) {

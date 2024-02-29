@@ -19,59 +19,59 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        File game_records = new File("input.txt");
+        File gameRecordsFile = new File("input.txt");
 
         try {
-            Scanner read_records = new Scanner(game_records);
+            Scanner readingGameRecords = new Scanner(gameRecordsFile);
 
-            int total = 0;
+            int sumOfPossibleGamesId = 0;
 
-            String game_id = "";
+            String gameId = "";
 
-            while (read_records.hasNextLine()) {
-                String line = read_records.nextLine();
+            while (readingGameRecords.hasNextLine()) {
+                String gameRecord = readingGameRecords.nextLine();
 
-                boolean isPossible = true;
+                boolean isTheGamePossible = true;
 
-                game_id = line.substring(0, line.indexOf(":"));
+                gameId = gameRecord.substring(0, gameRecord.indexOf(":"));
+                gameId = gameId.replaceAll("[^0-9]", "").trim();
 
-                System.out.print(game_id + " ");
-                game_id = game_id.replaceAll("[^0-9]", "").trim();
+                String gameInfo = gameRecord.substring(gameRecord.indexOf(":"), gameRecord.length());
 
-                String new_line = line.substring(line.indexOf(":"), line.length());
+                String[] cubeValues = gameInfo.replaceAll("[^0-9' ']", "").trim().replaceAll(" +", " ").split(" ");
 
-                String[] values = new_line.replaceAll("[^0-9' ']", "").trim().replaceAll(" +", " ").split(" ");
-
-                String[] names = new_line.replaceAll("[^a-zA-Z' ']", "").trim().replaceAll(" +", " ")
+                String[] cubeNames = gameInfo.replaceAll("[^a-zA-Z' ']", "").trim().replaceAll(" +", " ")
                         .split(" ");
 
-                for (int j = 0; j < names.length; j++) {
-                    String cube_color = names[j];
-                    int cube_value = Integer.parseInt(values[j]);
+                for (int j = 0; j < cubeNames.length; j++) {
+                    String cubeColor = cubeNames[j];
+                    int cubeValue = Integer.parseInt(cubeValues[j]);
 
-                    switch (cube_color.toString()) {
+                    switch (cubeColor.toString()) {
                         case "blue":
-                            if (cube_value > 14) {
-                                isPossible = false;
+                            if (cubeValue > 14) {
+                                isTheGamePossible = false;
                             }
                             break;
                         case "green":
-                            if (cube_value > 13) {
-                                isPossible = false;
+                            if (cubeValue > 13) {
+                                isTheGamePossible = false;
                             }
                             break;
                         case "red":
-                            if (cube_value > 12) {
-                                isPossible = false;
+                            if (cubeValue > 12) {
+                                isTheGamePossible = false;
                             }
                     }
                 }
 
-                if (isPossible)
-                    total += Integer.parseInt(game_id);
-                System.out.println("Jogo possivel: " + isPossible);
+                if (isTheGamePossible)
+                    sumOfPossibleGamesId += Integer.parseInt(gameId);      
             }
-            System.out.println("Soma dos ids de todos os jogos possiveis: " + total);
+
+            readingGameRecords.close();
+            
+            System.out.println("Soma dos ids de todos os jogos possiveis: " + sumOfPossibleGamesId);
 
         } catch (IOException e) {
             e.printStackTrace();
