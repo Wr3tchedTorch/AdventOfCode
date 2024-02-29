@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -10,10 +9,7 @@ public class App {
 
             int total_score = 0;
 
-            int lineCount = 0;
-
             while (read_file.hasNextLine()) {
-                lineCount++;
                 String line = read_file.nextLine();
                 line = line.split(":")[1];
 

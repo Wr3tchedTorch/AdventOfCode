@@ -16,6 +16,8 @@ public class App {
                 app.full_input += line + "\n";
             }
 
+            read_file.close();
+            
             String[] seeds = app.get_map_numbers("seeds").split(" ");
 
             // Getting the maps
@@ -42,7 +44,7 @@ public class App {
                 if (lowest_location > location) { lowest_location = location; }
             }
 
-            System.out.println("The lowest location to plant a seed is: " + lowest_location);
+            System.out.println("The lowest location to plant a seed is: " + lowest_location);            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
