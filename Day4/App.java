@@ -1,3 +1,5 @@
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -5,39 +7,34 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {                
         try {
-            Scanner read_file = new Scanner(new File("input.txt"));
+            Scanner readFile = new Scanner(new File("input.txt"));
 
-            int total_score = 0;
+            int totalScore = 0;
+            
+            while (readFile.hasNextLine()) {
+                String currentCard = readFile.nextLine();
+                currentCard = currentCard.split(":")[1];
 
-            while (read_file.hasNextLine()) {
-                String line = read_file.nextLine();
-                line = line.split(":")[1];
+                String[] yourCardNumbers = currentCard.split("\\|")[1].trim().replaceAll(" +", " ").split(" ");
+                String winningCardNumbers = currentCard.split("\\|")[0];
 
-                String[] cards = line.split("\\|")[1].trim().replaceAll(" +", " ").split(" ");
-                String winning_cards = line.split("\\|")[0];
+                int yourCardScore = 1;
+                boolean isReadingFirstCard = true;
 
-                int card_score = 0;
-                boolean first_card = true;
+                for (String numberBeingChecked : yourCardNumbers) {
+                    boolean isWinningNumber = winningCardNumbers.contains(" " + numberBeingChecked + " ");
 
-                
-                // ArrayList<String> winning_numbers = new ArrayList<>();
-
-                for (String numberBeingChecked : cards) {
-                    if (winning_cards.contains(" " + numberBeingChecked + " ")) {
-                        if (first_card) { first_card = false; card_score++; }
-                        else card_score *= 2;
-                        // winning_numbers.add(numberBeingChecked);
+                    if (isWinningNumber && !isReadingFirstCard) {
+                            isReadingFirstCard = false; yourCardScore *= 2; 
                     }
-                }
+                }                
 
-                // System.out.print("Card " + Integer.toString(lineCount) + " has " + Integer.toString(card_score) + " winning numbers \n\tThey are: ");
-
-                total_score += card_score;
+                totalScore += yourCardScore;
             }
 
-            System.out.println("All your cards combined are worth " + total_score);
+            System.out.println("All your cards combined are worth " + totalScore);
             
-            read_file.close();
+            readFile.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

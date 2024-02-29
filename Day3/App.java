@@ -23,6 +23,8 @@ public class App {
                 lines.add(readInput.nextLine());
             }
 
+            readInput.close();
+
             for (int i = 0; i < lines.size(); i++) {
                 String mid_line = lines.get(i);
                 String bottom_line = "";
