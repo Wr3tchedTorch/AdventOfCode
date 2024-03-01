@@ -1,16 +1,4 @@
-/*  
-
-Day 1 - Objetivo do exercicio: encontrar o primeiro e o último número em cada linha do texto, concatenar esses dois números, somar todos os números encontrados e exibir a soma no final.
-
-Exemplo:
-    1abc2
-    pqr3stu8vwx
-    a1b2c3d4e5f
-    treb7uchet
-
-Total = 12 + 38 + 115 + 77 = 142
-
-*/
+// Day 1: Trebuchet?!
 
 import java.io.File;
 import java.io.IOException;
@@ -18,40 +6,34 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        File inputFile = new File("input.txt");
+        File calibrationDocument = new File("input.txt");
 
         try {
-            Scanner readTextFile = new Scanner(inputFile);
+            Scanner readText = new Scanner(calibrationDocument);
 
             int total = 0;
 
-            while (readTextFile.hasNextLine()) {
-                String currentLine = readTextFile.nextLine();                
+            while (readText.hasNextLine()) {                
+                String line = readText.nextLine();                
 
-                char firstNum = '-';
-                char secondNum = '-';
+                char first_num = '-';
+                char second_num = '-';
 
-                for (int i = 0; i < currentLine.length(); i++) {
-                    char letterBeingChecked = currentLine.toCharArray()[i];
+                for (int i = 0; i < line.length(); i++) {
+                    char letter = line.toCharArray()[i];
 
-                    if (Character.isDigit(letterBeingChecked)) {
-                        boolean firstNumAlreadyFound = firstNum != '-';
-
-                        if (firstNumAlreadyFound) {
-                            secondNum = letterBeingChecked; 
-
-                        } else firstNum = letterBeingChecked;
+                    if (Character.isDigit(letter)) {
+                        if (first_num == '-') {
+                            first_num = letter;
+                        } else second_num = letter;
                     }
 
                 }
 
-                if (secondNum == '-') { secondNum = firstNum; }
+                if (second_num == '-') { second_num = first_num; }
 
-                total += Integer.parseInt(Character.toString(firstNum) + Character.toString(secondNum));
+                total += Integer.parseInt(Character.toString(first_num) + Character.toString(second_num));
             }
-
-            readTextFile.close();
-
             System.out.println("Total: " + total);
 
         } catch (IOException e) {

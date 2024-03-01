@@ -1,82 +1,131 @@
+// Day 4 - Objetivo: Encontrar todos os números que fazem parte do motor na esquemática e
+// somar todos os números no final. 
+// 
+// Exemplo de esquemática:
+// 
+// ..35..633.
+// ......#...
+// 617*......
+// .....+.58.
+// ..592.....
+// ......755.
+// ...$.*....
+// .664.598..
+// 
+// Os números adjacentes a um simbolo são os números que fazem parte do motor, esses números devem ser somados e o resultado deve ser exibido no final do programa
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    public static boolean isSpecialDigit(char digit) {
-        return !(Character.isDigit(digit) || Character.isLetter(digit) || Character.isWhitespace(digit)
-                || digit == '.');
+    public static boolean hasSymbol(String text) {
+        boolean hasSymbol = false;
+
+        for (char letter : text.toCharArray()) {
+            hasSymbol = (!Character.isDigit(letter) && !Character.isLetter(letter) && !Character.isWhitespace(letter) && letter != '.');
+
+            if (hasSymbol) break;
+        }
+
+        return hasSymbol;
     }
 
     public static void main(String[] args) {
-        File puzzle_input = new File("input.txt");
+        File inputTextFile = new File("input.txt");
 
         try {
-            Scanner readInput = new Scanner(puzzle_input);
+            Scanner readTextInput = new Scanner(inputTextFile);
 
-            ArrayList<String> lines = new ArrayList<>();
+            ArrayList<String> linesList = new ArrayList<>();
 
-            int total = 0;
+            int sumOfPartNumbers = 0;
 
-            while (readInput.hasNextLine()) {
-                lines.add(readInput.nextLine());
+            while (readTextInput.hasNextLine()) {
+                linesList.add(readTextInput.nextLine());
             }
+            readTextInput.close();
 
-            readInput.close();
+            int i = 0;            
+            
+            for (String lineBeingChecked : linesList) {
+                boolean hasTopline = i - 1 > 0;
+                boolean hasBottomline = i + 1 < linesList.size();
 
-            for (int i = 0; i < lines.size(); i++) {
-                String mid_line = lines.get(i);
-                String bottom_line = "";
-                String top_line = "";
-                if (i - 1 >= 0)
-                    top_line = lines.get(i - 1);
-                if (i + 1 <= lines.size())
-                    bottom_line = lines.get(i + 1);
+                String topLine = "";
+                String bottomLine = "";
 
-                String[] numbers_on_mid_line = mid_line.replaceAll("[^0-9]", " ").replaceAll(" +", " ").trim()
-                        .split(" ");
+                if (hasTopline) { topLine = linesList.get(i-1); }
+                if (hasBottomline) { bottomLine = linesList.get(i+1); }
 
-                for (String number : numbers_on_mid_line) {
-                    int number_pos = mid_line.indexOf(number);
+                int numberStartingPos = -1;
+                int numberFinalPos = -1;
 
-                    boolean hasVerticalNumber = false;
+                String numberFound = "";
 
-                    for (int j = 0; j < number.length(); j++) {
-                        if (bottom_line != "") {
-                            if (isSpecialDigit(bottom_line.toCharArray()[number_pos + j])) {
-                                hasVerticalNumber = true;
+                boolean gettingNewNumber = false;
+                boolean isNumber = false;
+
+                int j = 0;
+
+                
+                for (char letter : lineBeingChecked.toCharArray()) {                    
+                    isNumber = Character.isDigit(letter);
+
+                    if (isNumber) {
+                        if (!gettingNewNumber) numberStartingPos = j;
+                        gettingNewNumber = true;
+                        numberFound += letter;
+                    }                                       
+                    
+                    if (gettingNewNumber) {
+                        if (!isNumber || j == lineBeingChecked.length()-1) {                            
+                            numberFinalPos = j-1;
+                            
+                            // Checking if the new found number is a part number
+                            String topRow = "";
+                            String bottomRow = "";
+                            
+                            String leftLetterValue = "";
+                            String rightLetterValue = "";
+                            
+                            int leftColumnOffSet = 0;
+                            if (numberStartingPos-1 >= 0) {
+                                leftLetterValue = Character.toString(lineBeingChecked.charAt(numberStartingPos-1));
+                                leftColumnOffSet = 1;
                             }
+                            
+                            int rightColumnOffSet = 1;
+                            
+                            if (numberFinalPos+2 < lineBeingChecked.length()-1) {
+                                rightLetterValue = Character.toString(lineBeingChecked.charAt(numberFinalPos+1));
+                                rightColumnOffSet = 2;
+                            }
+                            
+                            
+                            if (topLine != "") { topRow = topLine.substring(numberStartingPos-leftColumnOffSet, numberFinalPos+rightColumnOffSet); }
+                            if (bottomLine != "") { bottomRow = bottomLine.substring(numberStartingPos-leftColumnOffSet, numberFinalPos+rightColumnOffSet); }
+                            
+                            boolean isPartNumber = hasSymbol(leftLetterValue) || hasSymbol(topRow) || hasSymbol(bottomRow) || hasSymbol(rightLetterValue);
+                            
+                            if (isPartNumber) {
+                                sumOfPartNumbers += Integer.parseInt(numberFound);
+                            }
+
+                            numberFound = "";
+                            gettingNewNumber = false;
                         }
 
-                        if (top_line != "") {
-                            if (isSpecialDigit(top_line.toCharArray()[number_pos + j])) {
-                                hasVerticalNumber = true;
-                            }
-                        }
                     }
-
-                    boolean checkBehind = false;
-                    boolean checkInfront = false;
-
-                    if (number_pos-1 >= 0) {
-                        checkBehind = isSpecialDigit(mid_line.toCharArray()[number_pos - 1]);
-                    }
-
-                    if (number_pos+1 <= mid_line.length()) {
-                        checkInfront = isSpecialDigit(mid_line.toCharArray()[number_pos + number.length() + 1]);
-                    }
-
-                    if (hasVerticalNumber ||
-                            checkBehind ||
-                            checkInfront) {
-                        total += Integer.parseInt(number);
-                        System.out.println("O número " + number + " é um part number!");
-                    }
+                    
+                    j++;
                 }
-            }
+                System.out.println();
 
-            System.out.println("Resultado total: " + total);
+                i++;
+            }
+            System.out.println(sumOfPartNumbers);
         } catch (IOException e) {
             e.printStackTrace();
         }
