@@ -36,13 +36,15 @@ public class MapNetwork {
         return paths;
     }
 
-    private Map<String, String>[] getavailableChoiches() {
-        Map<String, String>[] availableChoichesList = new Map[mapWithoutInstructions.size()];
+    private Map<String, String>[] getAvailableChoices() {
+        Map<String, String>[] availableChoicesList = new Map[mapWithoutInstructions.size()];
         
         int i = 0;
         for (String line : mapWithoutInstructions) {
             line = line.substring(line.indexOf("("), line.length());
-            line = line.replaceAll("\\(", "").replaceAll("\\)", "");
+            line = line.replaceAll("\\(", "");
+            line = line.replaceAll("\\)", "");
+
             String leftOption = line.split(",")[0].trim();
             String rightOption = line.split(",")[1].trim();
             
@@ -50,18 +52,18 @@ public class MapNetwork {
             saveValues.put("left", leftOption);
             saveValues.put("right", rightOption);
 
-            availableChoichesList[i] = saveValues;
+            availableChoicesList[i] = saveValues;            
             i++;
         }
 
-        return availableChoichesList;
+        return availableChoicesList;
     }
 
     public int getStepsNumber() {
         char[] instructions = getStepsInstructions();
         String[] paths = getPaths();
         String currentPath = paths[Arrays.asList(paths).indexOf("AAA")];
-        Map<String, String>[] availableChoiches = getavailableChoiches();
+        Map<String, String>[] availableChoices = getAvailableChoices();
         int stepsCount = 0;
 
         int i = 0;
@@ -73,7 +75,7 @@ public class MapNetwork {
             char instruction = instructions[i];
             
             direction = instruction == 'L' ? "left" : "right";
-            currentPath = (String)availableChoiches[Arrays.asList(paths).indexOf(currentPath)].get(direction);
+            currentPath = (String)availableChoices[Arrays.asList(paths).indexOf(currentPath)].get(direction);
             currentPath = currentPath.trim();
             
             i++;

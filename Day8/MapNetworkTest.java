@@ -16,8 +16,8 @@ public class MapNetworkTest {
     }
 
     @Test
-    public void testPuzzleInputShouldReturn16343() {
-        MapNetwork myMap = new MapNetwork(Utils.getFileLines("./files/puzzle_input.txt"));
+    public void testShouldReturn16343() {
+        MapNetwork myMap = new MapNetwork(Utils.getFileLines("./files/third_test.txt"));
         assertEquals(16343, myMap.getStepsNumber());
     }
 }
