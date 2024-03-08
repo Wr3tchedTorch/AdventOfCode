@@ -77,7 +77,6 @@ public class MapNetwork {
             currentPath = currentPath.trim();
             
             i++;
-            System.out.println(currentPath);
 
             if (i == instructions.length) {
                 i = 0;
