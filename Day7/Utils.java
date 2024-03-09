@@ -20,13 +20,12 @@ public class Utils {
         return fileLines;
     }
 
-    public static ArrayList<Integer> convertStringToIntegerArray(String stringWithNumbers) {
-        ArrayList<Integer> numbers = new ArrayList<>();
+    public static String getFullTextFromLinesList(ArrayList<String> linesList) {
+        String fullText = "";
 
-        for (String number : stringWithNumbers.split(" ")) {
-            numbers.add(Integer.parseInt(number));
+        for (String line : linesList) {
+            fullText += line;
         }
-
-        return numbers;
+        return fullText;
     }
 }
