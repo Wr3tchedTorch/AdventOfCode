@@ -1,5 +1,5 @@
 // Day 4 - Objetivo: Encontrar todos os números que fazem parte do motor na esquemática e
-// somar todos os números no final. 
+// soma-los no final. 
 // 
 // Exemplo de esquemática:
 // 
@@ -17,6 +17,6 @@
 public class App {
     public static void main(String[] args) {
         Schematic engineSchematic = new Schematic(Utils.getFileLines("./files/first_example.txt"));
-        System.out.println(engineSchematic.getPartNumbersProduct());
+        System.out.println(engineSchematic.getPartNumbersSum());
     }
 }

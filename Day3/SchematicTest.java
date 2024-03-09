@@ -10,6 +10,18 @@ public class SchematicTest {
         myMap.add("467*.114/.");
 
         Schematic mySchematic = new Schematic(myMap);
-        assertEquals(53.238f, mySchematic.getPartNumbersProduct(), 0);
+        assertEquals(581, mySchematic.getPartNumbersSum());
+    }
+
+    @Test
+    public void testMultipleLineMap() {
+        Schematic mySchematic = new Schematic(Utils.getFileLines("./files/first_example.txt"));
+        assertEquals(4361, mySchematic.getPartNumbersSum());
+    }
+
+    @Test
+    public void testMainPuzzleMap() {
+        Schematic mySchematic = new Schematic(Utils.getFileLines("./files/puzzle_input.txt"));
+        assertEquals(525911, mySchematic.getPartNumbersSum());
     }
 }
