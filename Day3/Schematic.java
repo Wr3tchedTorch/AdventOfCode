@@ -73,7 +73,7 @@ public class Schematic {
         ArrayList<Character> adjacentLetters = new ArrayList<>();
         if (hasTopLine) {
             for (char letter : topLine.substring(numberPosition[0]-lineIndex*10, numberPosition[1]-lineIndex*10+1).toCharArray()) {
-                adjacentLetters.add(letter);
+                adjacentLetters.add(letter);    
             }
         } 
         if (hasBottomLine) {
