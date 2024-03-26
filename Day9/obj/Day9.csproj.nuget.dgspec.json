@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj": {}
+    "C:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj": {}
   },
   "projects": {
-    "c:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj": {
+    "C:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj",
+        "projectUniqueName": "C:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj",
         "projectName": "Day9",
-        "projectPath": "c:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj",
+        "projectPath": "C:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\Day9.csproj",
         "packagesPath": "C:\\Users\\ericm\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\obj\\",
+        "outputPath": "C:\\Users\\ericm\\Desktop\\AdventOfCode\\Day9\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ericm\\AppData\\Roaming\\NuGet\\NuGet.Config",
